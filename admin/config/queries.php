@@ -1,0 +1,143 @@
+<?php
+switch ($page) {
+	case 'dashboard':
+		
+		break;
+	case 'pages':
+		if(isset($_POST['submitted'])==1){
+			$title=mysqli_real_escape_string($db,$_POST['title']);
+			$label=mysqli_real_escape_string($db,$_POST['label']);
+			$header=mysqli_real_escape_string($db,$_POST['header']);
+			$body=mysqli_real_escape_string($db,$_POST['body']);
+			$user=$_POST['user'];	
+			$slug=$_POST['slug'];		
+			if(isset($_POST['id'])!=''){
+				$action='Updated';
+				$q="UPDATE posts SET user=$user,slug='$slug',title='$title',header='$header',body='$body',label='$label' WHERE id=$_GET[id]";
+				unset($_POST);
+			}else{
+				$action='Added';
+				$q="INSERT INTO posts (type,slug, user, title, label, header, body) VALUES(1,'$slug', $user,'$title','$label','$header','$body')";					
+			}
+			$r=mysqli_query($db,$q);
+			if($r){
+				$message='<p class="alert alert-success">Page was '.$action.'</p>';
+			}
+			else{
+				$message='<p class="alert alert-danger">Page was not added because: '.mysqli_error($db).'</p>';
+				$message.='<p class="alert alert-warning"> Query'.$q.'</p>';
+			}
+				
+			}
+		if(isset($_GET['id'])){$opened=data_posts($db, $_GET['id']);}
+	break;
+	case 'users':
+
+			if(isset($_POST['submitted']) == 1) {
+				
+				//$first = mysqli_real_escape_string($dbc, $_POST['first']);
+				//$last = mysqli_real_escape_string($dbc, $_POST['last']);
+				$first=$_POST['first'];
+				$last=$_POST['last'];
+				if($_POST['password'] != '') {
+					
+					if($_POST['password'] == $_POST['passwordv']) {
+						
+						$password = " password = SHA1('$_POST[password]'),";
+						$verify = true;
+						
+					} else {
+						
+						$verify = false;
+						
+					}					
+					
+				} else {
+						
+					$verify = false;	
+					
+				}
+				
+				if(isset($_POST['id']) != '') {
+					
+					$action = 'updated';
+					$q = "UPDATE users SET first = '$first', last = '$last', email = '$_POST[email]', $password phone='$_POST[phone]', status = $_POST[status] WHERE id = $_GET[id]";
+					$r = mysqli_query($db, $q);
+					
+				} else {
+					
+					$action = 'added';
+					
+					$q = "INSERT INTO users (first, last, email, password, phone, status) VALUES ('$first', '$last', '$_POST[email]', SHA1('$_POST[password]'),'$_POST[phone]', '$_POST[status]')";
+					
+					if($verify == true) {
+						$r = mysqli_query($db, $q);
+					}
+				}
+				
+				
+				if($r){
+					
+					$message = '<p class="alert alert-success">User was '.$action.'!</p>';
+					
+				} else {
+					
+					$message = '<p class="alert alert-danger">User could not be '.$action.' because: '.mysqli_error($db);
+					if($verify == false) {
+						$message .= '<p class="alert alert-danger">Password fields empty and/or do not match.</p>';
+					}
+					$message .= '<p class="alert alert-warning">Query: '.$q.'</p>';
+					
+				}
+							
+			}
+			
+			if(isset($_GET['id'])) { $opened = data_user($db, $_GET['id']); }
+		break;
+	case 'settings':
+		if(isset($_POST['submitted'])==1){
+			$value=mysqli_real_escape_string($db,$_POST['value']);
+			$label=mysqli_real_escape_string($db,$_POST['label']);
+
+			if(isset($_POST['id'])!=''){
+				$action='Updated';
+				$q="UPDATE settings SET id='$_POST[id]',value='$value',label='$label' WHERE id='$_POST[openedid]'";
+				$r=mysqli_query($db,$q);
+			}
+			
+			if($r){
+				$message='<p class="alert alert-success">Settings was '.$action.'</p>';
+			}
+			else{
+				$message='<p class="alert alert-danger">Settings was not added because: '.mysqli_error($db).'</p>';
+				$message.='<p class="alert alert-warning"> Query'.$q.'</p>';
+			}
+				
+			}		
+		break;
+	case 'navigation':
+		if(isset($_POST['submitted'])==1){
+			$url=mysqli_real_escape_string($db,$_POST['url']);
+			$label=mysqli_real_escape_string($db,$_POST['label']);
+
+			if(isset($_POST['id'])!=''){
+				$action='Updated';
+				$q="UPDATE navigation SET id=$_POST[id],url='$url',label='$label',status=$_POST[status] WHERE id='$_POST[openedid]'";
+				$r=mysqli_query($db,$q);
+			}
+			
+			if($r){
+				$message='<p class="alert alert-success">Navigation was '.$action.'</p>';
+			}
+			else{
+				$message='<p class="alert alert-danger">Navigation was not added because: '.mysqli_error($db).'</p>';
+				$message.='<p class="alert alert-warning"> Query'.$q.'</p>';
+			}
+				
+			}		
+		break;
+	default:
+		
+		break;
+}
+?>
