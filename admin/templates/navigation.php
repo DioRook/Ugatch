@@ -10,6 +10,7 @@
 		<li class="nav-item<?php if($page=='users'){echo $ac;}?>"><a class="nav-link" href="?page=users">Users</a></li>
 		<li class="nav-item<?php if($page=='settings'){echo $ac;}?>"><a class="nav-link" href="?page=settings">Settings</a></li>
 		<li class="nav-item<?php if($page=='navigation'){echo $ac;}?>"><a class="nav-link" href="?page=navigation">Navigation</a></li>
+		<li class="nav-item<?php if($page=='products'){echo $ac;}?>"><a class="nav-link" href="?page=products">Products</a></li>
 	</ul>
 	<ul class="navbar-nav navbar-right">
 		<li>

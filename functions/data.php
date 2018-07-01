@@ -33,4 +33,18 @@ function data_posts($db,$id){
 	}
 	return $data;
 }
+function data_customer($db,$id){
+	if(is_numeric($id)){
+		$q="SELECT * FROM customers WHERE id='$id'";
+	}else{
+		$q="SELECT * FROM customers WHERE email='$id'";
+	}
+	$r=mysqli_query($db,$q);
+	$data=mysqli_fetch_assoc($r);
+	$data['fullname']=$data['first'].' '.$data['last'];
+	$data['fullname_rev']=$data['last'].' '.$data['first'];
+	return $data;	
+}
+
+
 ?>

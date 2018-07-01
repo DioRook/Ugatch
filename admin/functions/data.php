@@ -32,4 +32,10 @@ function data_posts($db,$id){
 	}
 	return $data;
 }
+function data_products($db,$id){
+	$qr="SELECT * FROM products WHERE id =$id";
+	$r=mysqli_query($db,$qr);
+	$data=mysqli_fetch_assoc($r);
+	return $data;
+}
 ?>

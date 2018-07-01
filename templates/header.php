@@ -1,4 +1,6 @@
-
+<?php 
+session_start();
+?>
 <?php include ('config/setup.php');?>
 
 <!DOCTYPE html>

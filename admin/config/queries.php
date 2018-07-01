@@ -136,6 +136,35 @@ switch ($page) {
 				
 			}		
 		break;
+	case 'products':
+		if(isset($_POST['submitted'])==1){
+			$pcode=mysqli_real_escape_string($db,$_POST['p_code']);
+			$name=mysqli_real_escape_string($db,$_POST['name']);
+			$discription=mysqli_real_escape_string($db,$_POST['discription']);
+			$stock=$_POST['stock'];	
+			$ordered=$_POST['ordered'];	
+			$price=$_POST['price'];
+				
+			if(isset($_POST['id'])!=''){
+				$action='Updated';
+				$q="UPDATE products SET p_code='$pcode',name='$name',discription='$discription',stock=$stock,ordered=$ordered,price=$price WHERE id=$_GET[id]";
+				unset($_POST);
+			}else{
+				$action='Added';
+				$q="INSERT INTO products (p_code,name,discription,stock,ordered,price) VALUES('$pcode','$name','$discription',$stock,$ordered,$price)";					
+			}
+			$r=mysqli_query($db,$q);
+			if($r){
+				$message='<p class="alert alert-success">Product was '.$action.'</p>';
+			}
+			else{
+				$message='<p class="alert alert-danger">Product was not added because: '.mysqli_error($db).'</p>';
+				$message.='<p class="alert alert-warning"> Query'.$q.'</p>';
+			}
+				
+			}
+		if(isset($_GET['id'])){$opened=data_products($db, $_GET['id']);}
+	break;
 	default:
 		
 		break;

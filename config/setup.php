@@ -29,5 +29,5 @@ else{
 #page setup
 $page=data_posts($db, $path['call_parts'][0]);
 $views=data_post_type($db, $page['type']);
-
+$customer=data_customer($db, $_SESSION['username']);
 ?>
