@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 #Setup file:
 #database..
 include ('../config/connection.php');
@@ -27,5 +27,5 @@ include ('config/queries.php');
 
 
 
-$user=data_user($db, $_SESSION['username']);
+$user=data_user($db, $_SESSION['admin']);
 ?>

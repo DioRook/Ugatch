@@ -5,7 +5,7 @@ if($_POST){
 	$q="SELECT * FROM users WHERE email='$_POST[email]' AND password=sha1('$_POST[password]')";
 	$r=mysqli_query($db,$q);
 	if(mysqli_num_rows($r)== 1){
-		$_SESSION['username']=$_POST['email'];
+		$_SESSION['admin']=$_POST['email'];
 		header('Location: index.php');
 	}
 }

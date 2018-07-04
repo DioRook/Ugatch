@@ -7,6 +7,11 @@ include ('config/connection.php');
 define('D_TEMP', 'templates');
 define('D_VIEW', 'views');
 
+#PHP Mailer
+
+
+
+
 #functions..
 include('functions/sandbox.php');
 include('functions/data.php');

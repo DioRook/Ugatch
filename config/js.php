@@ -15,5 +15,22 @@
 	  $("#btn-debug").click(function(){
 	  	$("#consol-debug").toggle();
 	  });
+$('#exportForm').submit(function(e){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        $.ajax({
+            type: "POST",
+            url: $(this).attr( 'action' ),
+            data: $(this).serialize(),
+            success: function( response ) {
+                //alert(response );
+                alert("Added To Cart");
+            }
+        });
+
+        return false;
+    });
+	  
+	  
 	});
 </script>

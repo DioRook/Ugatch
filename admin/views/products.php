@@ -60,7 +60,7 @@
 		  </div>
 		  <div class="form-group">
 		<label for="discription">Discription:</label>
-		<textarea class="form-control editor"  rows=8 id="discription" name="discription" placeholder="Discription"><?php echo $opened['discription'];?></textarea>
+		<textarea class="form-control"  rows=8 id="discription" name="discription" placeholder="Discription"><?php echo $opened['discription'];?></textarea>
 		  </div>
 		  <button type="submit" class="btn btn-primary">Save</button>
 		  <input type="hidden" name="submitted" value='1' />

@@ -17,3 +17,8 @@ session_start();
 		<main role="main">
 
 		<?php include (D_TEMP.'/navigation.php');?>
+		<?php 
+		if($customer['active']==0){
+			echo '<p class="alert alert-danger">Account Not Activated  <a href="http://localhost/ugatch/web/UgatchWeb/activation.php?email='.$customer['email'].'">activation link</a></p>';
+		}
+		?>
