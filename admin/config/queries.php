@@ -144,15 +144,42 @@ switch ($page) {
 			$stock=$_POST['stock'];	
 			$ordered=$_POST['ordered'];	
 			$price=$_POST['price'];
-				
+			$ds = DIRECTORY_SEPARATOR;  //1
+			$id = $_POST['p_code'];	
+			$storeFolder = 'images';   //2
+			$ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+			print_r($_FILES);
+			$image = $id.'.'.$ext;
 			if(isset($_POST['id'])!=''){
 				$action='Updated';
-				$q="UPDATE products SET p_code='$pcode',name='$name',discription='$discription',stock=$stock,ordered=$ordered,price=$price WHERE id=$_GET[id]";
+				$q="UPDATE products SET p_code='$pcode',image = '$image', catagory='$_POST[cat]', name='$name',discription='$discription',mrp=$_POST[mrp],discount='$_POST[discount]', stock=$stock,ordered=$ordered,price=$price, status=$_POST[status] WHERE id=$_GET[id]";
 				unset($_POST);
 			}else{
 				$action='Added';
-				$q="INSERT INTO products (p_code,name,discription,stock,ordered,price) VALUES('$pcode','$name','$discription',$stock,$ordered,$price)";					
+				$q="INSERT INTO products (p_code,name,catagory,image,discription,stock,ordered,price,mrp,discount,status) VALUES ('$pcode','$name','$_POST[cat]','$image','$discription',$stock,$ordered,$price,$_POST[mrp],'$_POST[discount]',$_POST[status])";					
 			}
+			if (!empty($_FILES)) {
+     
+    $tempFile = $_FILES['file']['tmp_name'];          //3             
+      
+    $targetPath = $_SERVER['DOCUMENT_ROOT'] . $ds. $storeFolder . $ds;  //4
+     mkdir($targetPath);
+    $targetFile =  $targetPath. $image;  //5
+    echo $targetFile;
+    print_r(move_uploaded_file($tempFile,$targetFile)); //6    
+    
+    $deleteFile = $targetPath.$old['image'];
+	
+    if($old['image'] != '') {
+    	
+		if(!is_dir($deleteFile)) {
+			
+			unlink($deleteFile);
+			
+		}
+    }
+  
+}
 			$r=mysqli_query($db,$q);
 			if($r){
 				$message='<p class="alert alert-success">Product was '.$action.'</p>';

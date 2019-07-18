@@ -1,4 +1,5 @@
 <?php
+
 function data_setting_val($db,$id){
 	$q="SELECT * FROM settings WHERE id = '$id'";
 	$r=mysqli_query($db,$q);
@@ -6,14 +7,13 @@ function data_setting_val($db,$id){
 	 return $debug['value'];	
 }
 
+
 function data_post_type($db,$id){
-	$q="SELECT * FROM post_types WHERE id=$id";
+	$q="SELECT * FROM post_types WHERE id='$id'";
 	$r=mysqli_query($db,$q);
 	$data=mysqli_fetch_assoc($r);
 	return $data;
 }
-
-
 
 
 function data_posts($db,$id){
@@ -35,7 +35,7 @@ function data_posts($db,$id){
 }
 function data_customer($db,$id){
 	if(is_numeric($id)){
-		$q="SELECT * FROM customers WHERE id='$id'";
+		$q="SELECT * FROM customers WHERE id=$id";
 	}else{
 		$q="SELECT * FROM customers WHERE email='$id'";
 	}

@@ -4,6 +4,10 @@
 	<pre>
 <?php print_r($path);?>
 	</pre>
+	<h1>SESSION</h1>
+	<pre>
+<?php print_r($_SESSION);?>
+	</pre>
 	<h1>GET</h1>
 	<pre>
 <?php print_r($_GET);?>

@@ -1,17 +1,6 @@
 <?php if(isset($opened['id'])) {?>
 
-<script>
-		$(document).ready(function(){
-		
-		var myDropzone= new Dropzone("#avatar-dropzone",{url:"../uploads"});
-		Dropzone.autoDiscover=false;
-		myDropzone.on("success",function(){
-			alert("sssss");
-			$("#avatar").load("ajax/avatar.php?id=<?php echo $opened['id'];?>");
-		});
-		
-	});
-</script>
+
 <?php }?>
 
 
@@ -90,7 +79,6 @@
 		<br></br>
 		</form>
 		<?php if(isset($opened['id'])) {?>
-		<form action="uploads.php?id=<?php echo $opened['id'];?>" class="dropzone">
 		</form>
 		<?php } ?>
 		

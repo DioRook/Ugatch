@@ -1,0 +1,2 @@
+[23-Jul-2018 16:23:06 UTC] PHP Warning:  require(PHPMailer/src/Exception.php): failed to open stream: No such file or directory in /home/c5zpudl71dj8/public_html/functions/mail.php on line 6
+[23-Jul-2018 16:23:06 UTC] PHP Fatal error:  require(): Failed opening required 'PHPMailer/src/Exception.php' (include_path='.:/opt/alt/php72/usr/share/pear') in /home/c5zpudl71dj8/public_html/functions/mail.php on line 6

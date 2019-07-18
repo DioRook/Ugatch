@@ -1996,6 +1996,7 @@ class PHPMailer
             'no' => 'nb',
             'se' => 'sv',
             'sr' => 'rs',
+            'tg' => 'tl',
         ];
 
         if (isset($renamed_langcodes[$langcode])) {
@@ -2121,7 +2122,7 @@ class PHPMailer
         }
         // If utf-8 encoding is used, we will need to make sure we don't
         // split multibyte characters when we wrap
-        $is_utf8 = 'utf-8' == strtolower($this->CharSet);
+        $is_utf8 = static::CHARSET_UTF8 === strtolower($this->CharSet);
         $lelen = strlen(static::$LE);
         $crlflen = strlen(static::$LE);
 
@@ -3628,7 +3629,7 @@ class PHPMailer
             //Is it a valid IPv4 address?
             return (bool) filter_var($host, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4);
         }
-        if (filter_var('http://' . $host, FILTER_VALIDATE_URL, FILTER_FLAG_HOST_REQUIRED)) {
+        if (filter_var('http://' . $host, FILTER_VALIDATE_URL)) {
             //Is it a syntactically valid hostname?
             return true;
         }

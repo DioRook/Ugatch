@@ -24,7 +24,6 @@ if($_POST){
 	<body>
 		<main role="main">
 
-		<?php// include (D_TEMP.'/navigation.php');?>
 		
 		<div class="container">
 			<div class="row">

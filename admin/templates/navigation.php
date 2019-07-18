@@ -11,7 +11,7 @@
 		<li class="nav-item<?php if($page=='settings'){echo $ac;}?>"><a class="nav-link" href="?page=settings">Settings</a></li>
 		<li class="nav-item<?php if($page=='navigation'){echo $ac;}?>"><a class="nav-link" href="?page=navigation">Navigation</a></li>
 		<li class="nav-item<?php if($page=='products'){echo $ac;}?>"><a class="nav-link" href="?page=products">Products</a></li>
-	</ul>
+		<!-- <li class="nav-item<?php if($page=='tkmx'){echo $ac;}?>"><a class="nav-link" href="?page=tkmx">TechMax</a></li> -->	</ul>
 	<ul class="navbar-nav navbar-right">
 		<li>
 			<?php if($debug==1) {?>

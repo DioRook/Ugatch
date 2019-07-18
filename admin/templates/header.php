@@ -12,6 +12,8 @@ if(!isset($_SESSION['admin'])){
 		<title><?php echo 'Admin'.' | '.$title; ?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta charset="utf-8">
+		<link rel="shortcut icon" href="images/u.png" />
+
 		<?php include ('config/css.php');?>
 		<?php include ('config/js.php');?>
 

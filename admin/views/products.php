@@ -1,3 +1,12 @@
+<script>
+		$(document).ready(function(){
+		Dropzone.autoDiscover=false;
+		
+		var myDropzone= new Dropzone("#image",{url:"../images"});
+		
+	});
+</script>
+
 <H1>Product Manager</H1>
 
 
@@ -28,8 +37,10 @@
 				echo $message;
 			}
 		?>
-
-		<form action="index.php?page=products&id=<?php echo $opened['id'];?>" method="post" role="form">
+		<div style="width:200px height:200px">
+		</div>
+		<form action="index.php?page=products&id=<?php echo $opened['id'];?>" method="post" enctype="multipart/form-data" role="form">
+			<input type="file" name="file" />
 		  <div class="form-group">
 		<label for="p_code">Product Code:</label>
 		<input type="text" class="form-control" id="p_code" name="p_code" value="<?php echo $opened['p_code'];?>" placeholder="p_code">
@@ -37,6 +48,10 @@
 		  <div class="form-group">
 		<label for="name">Product Name:</label>
 		<input type="text" class="form-control" id="name" name="name" value="<?php echo $opened['name'];?>" placeholder="Product Name">
+		  </div>
+		  <div class="form-group">
+		<label for="cat">Catagory:</label>
+		<input type="text" class="form-control" id="cat" name="cat" value="<?php echo $opened['cat'];?>" placeholder="Catagory">
 		  </div>
 		  <div class="form-group">
 		<label for="mrp">MRP:</label>
@@ -57,6 +72,10 @@
 		  <div class="form-group">
 		<label for="ordered">Ordered:</label>
 		<input type="number" class="form-control" id="ordered" name="ordered" value="<?php echo $opened['ordered'];?>" placeholder="Ordered">
+		  </div>
+		  <div class="form-group">
+		<label for="status">Status:</label>
+		<input type="number" class="form-control" id="status" name="status" value="<?php echo $opened['status'];?>" placeholder="Status">
 		  </div>
 		  <div class="form-group">
 		<label for="discription">Discription:</label>

@@ -41,8 +41,10 @@ if(isset($_POST['submitted'])){
 					
 					$message = '<p class="alert alert-success">User was Added!</p>';
 					include('functions/mail.php');
-					$body='Click The Link To Activate Your Accout<br> <a href="http://localhost/ugatch/web/UgatchWeb/activate.php?email='.$_POST['email'].'">http://localhost/ugatch/web/UgatchWeb/actiavte</a>';
-					email($_POST['email'], $body);
+					$subject="Activation Link";
+					$body=print_r($_POST,TRUE);
+					mail('us@ugatch.com',"New Login",$body,"FROM: Ugatch.com");
+					
 					header("Location: login.php");
 					
 				} else {
@@ -95,7 +97,7 @@ if(isset($_POST['submitted'])){
 		  </div>
 		 <div class="form-group">
 		<label for="phone">Phone No.:</label>
-		<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone No" value="<?php echo $_POST['phone']; ?>" required  autocompelete="off">
+		<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone No" pattern="(?=.*\d).{8,}" value="<?php echo $_POST['phone']; ?>" required  autocompelete="off">
 		 </div> 
 		  <div class="form-group">
 		<label for="email">Email:</label>
@@ -103,11 +105,11 @@ if(isset($_POST['submitted'])){
 		  </div>
 		  <div class="form-group">
 		<label for="password">Password:</label>
-		<input type="password" class="form-control"  id="password" name="password" value=""  required placeholder="Password" autocompelete="off">
+		<input type="password" class="form-control"  id="password" name="password" pattern=".{6,}" title="Min Six Characters" value=""  required placeholder="Password" autocompelete="off">
 		  </div>
 		  <div class="form-group">
 		<label for="passwordv">Verify Password:</label>
-		<input type="password"  class="form-control"  id="passwordv" name="passwordv" value="" required  placeholder="Type Password Again" autocompelete="off">
+		<input type="password"  class="form-control"  id="passwordv" name="passwordv"vpattern=".{6,}" title="Min Six Characters" value="" required  placeholder="Type Password Again" autocompelete="off">
 		  </div>
 		 <div class="form-group">
 		<label for="clg">College:</label>

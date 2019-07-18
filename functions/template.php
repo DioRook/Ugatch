@@ -1,7 +1,7 @@
 <?php 
 	function nav_main($db,$path){
 	 $ac=" active";
-	 $q="SELECT * FROM navigation ORDER BY position ASC";
+	 $q="SELECT * FROM navigation WHERE status=1 ORDER BY position ASC ";
 	 $r=mysqli_query($db,$q);
 	 while($nav=mysqli_fetch_assoc($r)){
 	 	$nav['slug']=get_slug($db, $nav['url']);
